@@ -384,4 +384,16 @@ class CommandServiceProvider extends ServiceProvider
             return array_merge(array_values($this->commands), array_values($this->devCommands));
         }
     }
+
+    public function boot(): void
+    {
+        $this->app->afterResolving(RequestAbstract::class, function ($resolved) {
+            $resolved->validateResolved();
+        });
+
+        $this->app->resolving(RequestAbstract::class, function ($request, $app) {
+            $request = RequestAbstract::createFrom($app['request'], $request);
+            $request->setContainer($app);
+        });
+    }
 }
