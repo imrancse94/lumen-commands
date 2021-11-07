@@ -2,9 +2,9 @@
 
 namespace DummyNamespace;
 
-use Imrancse\LumenCommands\FormRequest;
+use Imrancse\LumenCommands\RequestAbstract;
 
-class DummyClass extends FormRequest
+class DummyClass extends RequestAbstract
 {
     /**
      * Determine if the user is authorized to make this request.
